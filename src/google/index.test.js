@@ -1,6 +1,6 @@
 /* global test expect */
 
-import { getUserCountry, getLanguages, translate } from '.'
+import { getUserCountry, getLanguages, translate, tts } from '.'
 
 import fetch from 'node-fetch'
 
@@ -50,8 +50,6 @@ test('getLanguages', async () => {
 test('translate', async () => {
     const rq = translate(TEST_LANG, TEST_QUESTION, TEST_SRC, TEST_TARGET)
 
-    console.log(rq)
-
     const res = await fetch(rq.url, {
         method: rq.method,
         headers: rq.headers,
@@ -66,4 +64,16 @@ test('translate', async () => {
     expect(json).toHaveProperty('synsets')
     expect(json).toHaveProperty('definitions')
     expect(json).toHaveProperty('examples')
+})
+
+test('tts', async () => {
+    const rq = tts(TEST_LANG, TEST_QUESTION, 'input', TEST_SRC)
+
+    const res = await fetch(rq.url, {
+        method: rq.method,
+        headers: rq.headers,
+    })
+
+    const data = await res.blob()
+    expect(data.type).toBe('audio/mpeg')
 })

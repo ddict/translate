@@ -1,4 +1,4 @@
-export { getUserCountry, getLanguages, translate }
+export { getUserCountry, getLanguages, translate, tts }
 
 import config from '../config'
 import { makeURL } from '../helper'
@@ -22,8 +22,8 @@ function getLanguages(lang = 'en') {
     const qs = {
         hl: lang,
         client: 'it',
-        oe: 'UTF-8',
-        ie: 'UTF-8',
+        oe: config.DEFAULT_ENCODING,
+        ie: config.DEFAULT_ENCODING,
     }
     return {
         url: makeURL(endpoint, qs),
@@ -45,8 +45,8 @@ function translate(lang = config.DEFAULT_LANG, question, src, target) {
         dt: ['t', 'rmt', 'bd', 'rms', 'qca', 'ss', 'md', 'ld', 'ex'],
         otf: '2', // ?
         dj: '1', // json object instead of array
-        ie: 'UTF-8',
-        oe: 'UTF-8',
+        ie: config.DEFAULT_ENCODING,
+        oe: config.DEFAULT_ENCODING,
     }
 
     return {
@@ -54,6 +54,33 @@ function translate(lang = config.DEFAULT_LANG, question, src, target) {
         method: 'GET',
         headers: {
             'User-Agent': config.user_agent,
+        },
+    }
+}
+
+// src: input or target
+function tts(lang = config.DEFAULT_LANG, question, src = 'input', target) {
+    const endpoint = 'https://translate.google.com/translate_tts'
+    // const endpoint = 'https://httpbin.org/get'
+    const qs = {
+        q: question,
+        tl: target,
+        hl: lang,
+        client: 'it',
+        total: '1', // 1 or 2
+        idx: '0',
+        textlen: question.length,
+        prev: src,
+        ie: config.DEFAULT_ENCODING,
+    }
+
+    return {
+        url: makeURL(endpoint, qs),
+        method: 'GET',
+        headers: {
+            'User-Agent': config.user_agent,
+            Connection: 'keep-alive',
+            'Accept-Language': 'en-us',
         },
     }
 }
