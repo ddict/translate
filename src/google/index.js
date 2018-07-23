@@ -1,7 +1,14 @@
-export { getUserCountry, getLanguages, translate, tts }
+export {
+    getUserCountry,
+    getLanguages,
+    translate,
+    tts
+}
 
 import config from '../config'
-import { makeURL } from '../helper'
+import {
+    makeURL
+} from '../helper'
 
 function getUserCountry() {
     const endpoint = 'https://translate.googleapis.com/translate_a/w'
@@ -42,7 +49,7 @@ function translate(lang = config.DEFAULT_LANG, question, src, target) {
         tl: target,
         hl: lang,
         client: 'it',
-        dt: ['t', 'rmt', 'bd', 'rms', 'qca', 'ss', 'md', 'ld', 'ex'],
+        dt: ['t', 'rmt', 'bd', 'rms', 'qca', 'ss', 'md', 'ld', 'ex', 'rw'],
         otf: '2', // ?
         dj: '1', // json object instead of array
         ie: config.DEFAULT_ENCODING,

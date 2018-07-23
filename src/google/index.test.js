@@ -1,10 +1,17 @@
 /* global test expect */
 
-import { getUserCountry, getLanguages, translate, tts } from '.'
+import {
+    getUserCountry,
+    getLanguages,
+    translate,
+    tts
+} from '.'
 
 import fetch from 'node-fetch'
 
-import { mapLangFromCode } from '../language'
+import {
+    mapLangFromCode
+} from '../language'
 
 const TEST_LANG = 'en'
 const TEST_QUESTION = 'hello'
@@ -64,6 +71,7 @@ test('translate', async () => {
     expect(json).toHaveProperty('synsets')
     expect(json).toHaveProperty('definitions')
     expect(json).toHaveProperty('examples')
+    expect(json).toHaveProperty('related_words')
 })
 
 test('tts', async () => {

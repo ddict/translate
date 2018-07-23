@@ -1,28 +1,28 @@
 {
-  "name": "translate",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/ddict/translate.git"
-  },
-  "author": "",
-  "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://gitlab.com/ddict/translate/issues"
-  },
-  "homepage": "https://gitlab.com/ddict/translate#README",
-  "dependencies": {
-    "country-data": "0.0.31",
-    "qs": "^6.5.2"
-  },
-  "devDependencies": {
-    "babel-preset-env": "^1.7.0",
-    "jest": "^23.2.0",
-    "node-fetch": "^2.1.2"
-  }
+    "name": "translate",
+    "version": "0.0.1",
+    "description": "",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@gitlab.com/ddict/translate.git"
+    },
+    "author": "ddo",
+    "license": "UNLICENSED",
+    "bugs": {
+        "url": "https://gitlab.com/ddict/translate/issues"
+    },
+    "homepage": "https://gitlab.com/ddict/translate#README",
+    "dependencies": {
+        "country-data": "0.0.31",
+        "qs": "^6.5.2"
+    },
+    "devDependencies": {
+        "babel-preset-env": "^1.7.0",
+        "jest": "^23.2.0",
+        "node-fetch": "^2.1.2"
+    }
 }
