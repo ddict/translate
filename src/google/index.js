@@ -1,4 +1,4 @@
-export {
+export default {
     getUserCountry,
     getLanguages,
     translate,

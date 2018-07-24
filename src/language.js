@@ -1,8 +1,13 @@
-export { mapLangFromCode }
-
-import { countries, languages } from 'country-data'
+import {
+    countries,
+    languages
+} from 'country-data'
 
 import config from './config'
+
+export default {
+    mapLangFromCode
+}
 
 function mapLangFromCode(code = config.DEFAULT_COUNTRY) {
     const country = countries[code]
