@@ -1,17 +1,9 @@
 /* global test expect */
 
-import {
-    getUserCountry,
-    getLanguages,
-    translate,
-    tts
-} from '.'
+import google from '.'
+import language from '../language'
 
 import fetch from 'node-fetch'
-
-import {
-    mapLangFromCode
-} from '../language'
 
 const TEST_LANG = 'en'
 const TEST_QUESTION = 'hello'
@@ -21,7 +13,7 @@ const TEST_TARGET = 'vi'
 test('getUserCountry', async () => {
     expect.assertions(2)
 
-    const rq = getUserCountry()
+    const rq = google.getUserCountry()
 
     const res = await fetch(rq.url, {
         method: rq.method,
@@ -33,14 +25,14 @@ test('getUserCountry', async () => {
 
     expect(json).toHaveProperty('country')
 
-    const lang = mapLangFromCode(json.country)
+    const lang = language.mapLangFromCode(json.country)
     expect(lang).toHaveLength(2)
 })
 
 test('getLanguages', async () => {
     expect.assertions(2)
 
-    const rq = getLanguages(TEST_LANG)
+    const rq = google.getLanguages(TEST_LANG)
 
     const res = await fetch(rq.url, {
         method: rq.method,
@@ -55,7 +47,7 @@ test('getLanguages', async () => {
 })
 
 test('translate', async () => {
-    const rq = translate(TEST_LANG, TEST_QUESTION, TEST_SRC, TEST_TARGET)
+    const rq = google.translate(TEST_LANG, TEST_QUESTION, TEST_SRC, TEST_TARGET)
 
     const res = await fetch(rq.url, {
         method: rq.method,
@@ -75,7 +67,7 @@ test('translate', async () => {
 })
 
 test('tts', async () => {
-    const rq = tts(TEST_LANG, TEST_QUESTION, 'input', TEST_SRC)
+    const rq = google.tts(TEST_LANG, TEST_QUESTION, 'input', TEST_SRC)
 
     const res = await fetch(rq.url, {
         method: rq.method,

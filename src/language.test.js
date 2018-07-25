@@ -1,15 +1,14 @@
 /* global test expect */
 
-import { mapLangFromCode } from './language'
-
+import language from './language'
 import config from './config'
 
 test('mapLangFromCode', () => {
-    const lang = mapLangFromCode('VN')
+    const lang = language.mapLangFromCode('VN')
     expect(lang).toBe('vi')
 })
 
 test('mapLangFromCode default', () => {
-    const lang = mapLangFromCode(config.DEFAULT_COUNTRY)
+    const lang = language.mapLangFromCode(config.DEFAULT_COUNTRY)
     expect(lang).toBe(config.DEFAULT_LANG)
 })

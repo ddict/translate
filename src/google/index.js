@@ -2,7 +2,7 @@ export default {
     getUserCountry,
     getLanguages,
     translate,
-    tts
+    tts,
 }
 
 import config from '../config'
@@ -10,6 +10,7 @@ import {
     makeURL
 } from '../helper'
 
+// support client side only
 function getUserCountry() {
     const endpoint = 'https://translate.googleapis.com/translate_a/w'
     const qs = {
