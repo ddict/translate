@@ -67,9 +67,14 @@ function translate(lang = config.DEFAULT_LANG, question, src, target) {
 }
 
 // src: input or target
+// need http agent as keep-alive
 function tts(lang = config.DEFAULT_LANG, question, src = 'input', target) {
+    // src can be 'input' or 'target'
+    if (src !== 'input' && src !== 'target') {
+        src = 'input'
+    }
+
     const endpoint = 'https://translate.google.com/translate_tts'
-    // const endpoint = 'https://httpbin.org/get'
     const qs = {
         q: question,
         tl: target,
@@ -88,7 +93,6 @@ function tts(lang = config.DEFAULT_LANG, question, src = 'input', target) {
         headers: {
             'User-Agent': config.user_agent,
             Connection: 'keep-alive',
-            'Accept-Language': 'en-us',
         },
     }
 }

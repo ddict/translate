@@ -1,4 +1,5 @@
 /* global test expect */
+import https from 'https'
 
 import google from '.'
 import language from '../language'
@@ -10,6 +11,11 @@ const TEST_QUESTION = 'hello'
 const TEST_SRC = 'en'
 const TEST_TARGET = 'vi'
 
+// global agent
+const agent = new https.Agent({
+    keepAlive: true,
+})
+
 test('getUserCountry', async () => {
     expect.assertions(2)
 
@@ -18,6 +24,7 @@ test('getUserCountry', async () => {
     const res = await fetch(rq.url, {
         method: rq.method,
         headers: rq.headers,
+        agent: agent,
     })
 
     const json = await res.json()
@@ -37,6 +44,7 @@ test('getLanguages', async () => {
     const res = await fetch(rq.url, {
         method: rq.method,
         headers: rq.headers,
+        agent: agent,
     })
 
     const json = await res.json()
@@ -52,6 +60,7 @@ test('translate', async () => {
     const res = await fetch(rq.url, {
         method: rq.method,
         headers: rq.headers,
+        agent: agent,
     })
 
     const json = await res.json()
@@ -72,6 +81,7 @@ test('tts', async () => {
     const res = await fetch(rq.url, {
         method: rq.method,
         headers: rq.headers,
+        agent: agent,
     })
 
     const data = await res.blob()
