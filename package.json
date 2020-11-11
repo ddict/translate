@@ -7,16 +7,9 @@
         "build": "babel src -d lib",
         "test": "jest"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+ssh://git@gitlab.com/ddict/translate.git"
-    },
-    "author": "ddo",
+    "repository": "git@github.com:ddict/translate.git",
+    "author": "ddo <itsanope@icloud.com>",
     "license": "UNLICENSED",
-    "bugs": {
-        "url": "https://gitlab.com/ddict/translate/issues"
-    },
-    "homepage": "https://gitlab.com/ddict/translate#README",
     "dependencies": {
         "country-data": "0.0.31",
         "qs": "^6.5.2"
