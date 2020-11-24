@@ -6,9 +6,10 @@ export default {
 }
 
 import config from '../config'
-import {
-    makeURL
-} from '../helper'
+import { makeURL } from '../helper'
+
+const MAX_LENGTH = 5000
+const MAX_TTS_LENGTH = 200
 
 // support client side only
 function getUserCountry() {
@@ -43,6 +44,10 @@ function getLanguages(lang = 'en') {
 }
 
 function translate(lang = config.DEFAULT_LANG, question, src, target) {
+    if (question.length > MAX_LENGTH) {
+        throw new Error(`Maximum text length exceeded: ${MAX_LENGTH}`)
+    }
+
     const endpoint = 'https://translate.google.com/translate_a/single'
     const qs = {
         q: question,
@@ -69,6 +74,11 @@ function translate(lang = config.DEFAULT_LANG, question, src, target) {
 // src: input or target
 // need http agent as keep-alive
 function tts(lang = config.DEFAULT_LANG, question, src = 'input', target) {
+    // TODO: break by \n \r\n . ,
+
+    // cap by MAX_TTS_LENGTH
+    question = question.substring(0, MAX_TTS_LENGTH)
+
     // src can be 'input' or 'target'
     if (src !== 'input' && src !== 'target') {
         src = 'input'
