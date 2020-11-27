@@ -6,7 +6,8 @@ import {
 import config from './config'
 
 export default {
-    mapLangFromCode
+    mapLangFromCode,
+    getCountries,
 }
 
 function mapLangFromCode(code = config.DEFAULT_COUNTRY) {
@@ -21,4 +22,8 @@ function mapLangFromCode(code = config.DEFAULT_COUNTRY) {
     }
 
     return language.alpha2 || config.DEFAULT_LANG
+}
+
+function getCountries() {
+    return countries.all.map(c => c.alpha2)
 }
