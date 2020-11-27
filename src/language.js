@@ -25,5 +25,10 @@ function mapLangFromCode(code = config.DEFAULT_COUNTRY) {
 }
 
 function getCountries() {
-    return countries.all.map(c => c.alpha2)
+    return countries.all.map(c => c.alpha2).filter(onlyUnique)
+}
+
+// helper
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index
 }
