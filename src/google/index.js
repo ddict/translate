@@ -43,7 +43,13 @@ function getLanguages(lang = 'en') {
     }
 }
 
-function translate(lang = config.DEFAULT_LANG, question, src, target) {
+function translate(
+    lang = config.DEFAULT_LANG,
+    question,
+    src,
+    target,
+    simple = false
+) {
     if (question.length > MAX_LENGTH) {
         throw new Error(`Maximum text length exceeded: ${MAX_LENGTH}`)
     }
@@ -61,6 +67,9 @@ function translate(lang = config.DEFAULT_LANG, question, src, target) {
         ie: config.DEFAULT_ENCODING,
         oe: config.DEFAULT_ENCODING,
     }
+
+    // simple
+    if (simple) qs.dt = 't'
 
     return {
         url: makeURL(endpoint, qs),

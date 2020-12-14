@@ -75,6 +75,27 @@ test('translate', async () => {
     // expect(json).toHaveProperty('related_words')
 })
 
+test('translate simple', async () => {
+    const rq = google.translate(
+        TEST_LANG,
+        TEST_QUESTION,
+        TEST_SRC,
+        TEST_TARGET,
+        true
+    )
+
+    const res = await fetch(rq.url, {
+        method: rq.method,
+        headers: rq.headers,
+        agent: agent,
+    })
+
+    const json = await res.json()
+
+    expect(json).toHaveProperty('sentences')
+    expect(json).toHaveProperty('src')
+})
+
 test('tts', async () => {
     const rq = google.tts(TEST_LANG, TEST_QUESTION, 'input', TEST_SRC)
 
